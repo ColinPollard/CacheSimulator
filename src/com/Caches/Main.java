@@ -38,5 +38,14 @@ public class Main {
         result = SetAssociativeTester.calculateHitPercentage();
         System.out.println("SetAssociative has a hit/total percentage of " + result);
         System.out.println("SetAssociative took a cycle penalty of " + SetAssociativeTester.calculateCyclePenalty() + "\n");
+
+        //Test all combinations of set ways ----------------------------------------------------------------------------------------
+        for(int ways = 1; ways < 16; ways++)
+        {
+            setAssociativeCache = new SetAssociativeCache(840, 4, 16, ways);
+            CacheTester tester = new CacheTester(setAssociativeCache, POS9Data);
+            tester.calculateCyclePenalty();
+            System.out.println("Set Ways: " + ways + " Penalty: " + tester.calculateCyclePenalty());
+        }
     }
 }
