@@ -16,36 +16,74 @@ public class Main {
         SetAssociativeCache setAssociativeCache = new SetAssociativeCache(840, 4, 16, 8);
 
         //Direct Map Cache ---------------------------------------------------------------
-        //Create tester
-	    CacheTester DirectTester = new CacheTester(directCache, POS9Data);
-	    //Run first without recording
-	    DirectTester.calculateHitPercentage();
-        //Record results
-	    double result = DirectTester.calculateHitPercentage();
+	    CacheTester DirectTester = new CacheTester(directCache, POS9Data); //Create tester
+	    DirectTester.calculateHitPercentage(); //Run first without recording
+	    double result = DirectTester.calculateHitPercentage(); //Record results
         System.out.println("\n" + "DirectCache has a hit/total percentage of " + result);
-        System.out.println("DirectCache took a cycle penalty of " + DirectTester.calculateCyclePenalty() + "" + "\n");
+        System.out.println("DirectCache took a cycle penalty of " + DirectTester.calculateCyclePenalty());
+        DirectTester.printHitsMisses();
+        System.out.println();
 
         //Fully Associative Cache ---------------------------------------------------------------
         CacheTester AssociativeTester = new CacheTester(associativeCache, POS9Data);
         AssociativeTester.calculateHitPercentage();
         result = AssociativeTester.calculateHitPercentage();
         System.out.println("FullyAssociative has a hit/total percentage of " + result);
-        System.out.println("FullyAssociative took a cycle penalty of " + AssociativeTester.calculateCyclePenalty() + "\n");
+        System.out.println("FullyAssociative took a cycle penalty of " + AssociativeTester.calculateCyclePenalty());
+        AssociativeTester.printHitsMisses();
+        System.out.println();
 
         //Set Associative Cache ---------------------------------------------------------------
         CacheTester SetAssociativeTester = new CacheTester(setAssociativeCache, POS9Data);
         SetAssociativeTester.calculateHitPercentage();
         result = SetAssociativeTester.calculateHitPercentage();
         System.out.println("SetAssociative has a hit/total percentage of " + result);
-        System.out.println("SetAssociative took a cycle penalty of " + SetAssociativeTester.calculateCyclePenalty() + "\n");
+        System.out.println("SetAssociative took a cycle penalty of " + SetAssociativeTester.calculateCyclePenalty());
+        SetAssociativeTester.printHitsMisses();
+        System.out.println();
 
         //Test all combinations of set ways ----------------------------------------------------------------------------------------
         for(int ways = 1; ways < 16; ways++)
         {
-            setAssociativeCache = new SetAssociativeCache(840, 4, 16, ways);
-            CacheTester tester = new CacheTester(setAssociativeCache, POS9Data);
+            SetAssociativeCache setAssociative = new SetAssociativeCache(840, 1, 16, ways);
+            CacheTester tester = new CacheTester(setAssociative, POS9Data);
             tester.calculateCyclePenalty();
             System.out.println("Set Ways: " + ways + " Penalty: " + tester.calculateCyclePenalty());
         }
+
+        System.out.println("\n");
+
+        //Test all combinations of block sizes Direct Mapping -------------------------------------------------------------------------------------
+        for(int i = 1; i < 32; i++)
+        {
+            DirectMapCache direct = new DirectMapCache(840, i, 16);
+            CacheTester tester = new CacheTester(direct, POS9Data);
+            tester.calculateCyclePenalty();
+            System.out.println("Block Size: " + i + " Penalty: " + tester.calculateCyclePenalty());
+        }
+
+        System.out.println("\n");
+
+        //Test all combinations of block sizes Fully Associative -------------------------------------------------------------------------------------
+        for(int i = 1; i < 32; i++)
+        {
+            FullyAssociativeCache associative = new FullyAssociativeCache(840, i, 16);
+            CacheTester tester = new CacheTester(associative, POS9Data);
+            tester.calculateCyclePenalty();
+            System.out.println("Block Size: " + i + " Penalty: " + tester.calculateCyclePenalty());
+        }
+
+        System.out.println("\n");
+
+        //Test all combinations of block sizes SetAssociative -------------------------------------------------------------------------------------
+        for(int i = 1; i < 32; i++)
+        {
+            SetAssociativeCache setAssociative = new SetAssociativeCache(840, i, 16, 2);
+            CacheTester tester = new CacheTester(setAssociative, POS9Data);
+            tester.calculateCyclePenalty();
+            System.out.println("Block Size: " + i + " Penalty: " + tester.calculateCyclePenalty());
+        }
+
+        System.out.println("\n");
     }
 }

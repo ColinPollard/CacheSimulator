@@ -106,4 +106,9 @@ public class DirectMapCache extends Cache{
         System.out.println("New direct mapping cache uses " + size + " bits of data.");
         return res;
     }
+
+    public int getBlockSize()
+    {
+        return blockSize;
+    }
 }

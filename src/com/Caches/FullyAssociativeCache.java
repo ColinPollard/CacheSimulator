@@ -15,12 +15,12 @@ public class FullyAssociativeCache extends Cache {
     private int cacheLines;
     private int blockOffsetSize;
     private int blockIndexSize;
+    private int blockSize;
 
     /**
      * Variable to represent the number of storage bits used by this structure.
      */
     public int size;
-    public int blockSize;
 
     //Create arrays to store data into.
     private int[] tagBitArray;
@@ -29,12 +29,12 @@ public class FullyAssociativeCache extends Cache {
     /**
      * Creates a new FullyAssociativeCache.
      * @param maximumCacheBits Largest storage area allotted.
-     * @param blockSize Size of each data block in bytes.
+     * @param blockSizeInput Size of each data block in bytes.
      * @param addressSize Size of the physical address used in bits.
      */
-    public FullyAssociativeCache(int maximumCacheBits, int blockSize, int addressSize)
+    public FullyAssociativeCache(int maximumCacheBits, int blockSizeInput, int addressSize)
     {
-        this.blockSize = blockSize;
+        blockSize = blockSizeInput;
         this.physicalAddressSize = addressSize;
 
         blockOffsetSize = CalculateLog2(blockSize);
@@ -179,5 +179,10 @@ public class FullyAssociativeCache extends Cache {
         System.out.println("New Associative cache uses " + largestSize + " bits of data.");
 
         return largestCacheLength;
+    }
+
+    public int getBlockSize()
+    {
+        return blockSize;
     }
 }

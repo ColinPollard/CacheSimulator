@@ -2,7 +2,7 @@ package com.Caches;
 
 public abstract class Cache {
 
-    int blockSize;
+    abstract int getBlockSize();
     abstract void ClearCache();
     abstract boolean ReadFromCache(int address);
 

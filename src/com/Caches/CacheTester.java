@@ -71,6 +71,24 @@ public class CacheTester {
             }
             misses++;
         }
-        return (misses*(10+(1*cacheInstance.blockSize)));
+        return (misses*(10+(cacheInstance.getBlockSize())));
+    }
+
+    public void printHitsMisses() throws Exception {
+        int totalAttempts = testData.length;
+
+        if(totalAttempts == 0)
+            throw new Exception("Cannot execute with array of length 0.");
+
+        for (int i = 0; i < totalAttempts; i++)
+        {
+            if(cacheInstance.ReadFromCache(testData[i]))
+            {
+                System.out.print(1);
+                continue;
+            }
+            System.out.print(0);
+        }
+        System.out.println();
     }
 }

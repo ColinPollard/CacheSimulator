@@ -108,4 +108,9 @@ public class SetAssociativeCache extends Cache {
         System.out.println("New SetAssociativeCache uses " + size + " bits of storage.");
         return numberOfCaches;
     }
+
+    public int getBlockSize()
+    {
+        return blockSize;
+    }
 }
