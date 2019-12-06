@@ -14,32 +14,39 @@ public class Main {
         DirectMapCache directCache = new DirectMapCache(840, 4, 16);
         FullyAssociativeCache associativeCache = new FullyAssociativeCache(840, 4, 16);
         SetAssociativeCache setAssociativeCache = new SetAssociativeCache(840, 4, 16, 8);
+        System.out.println();
 
         //Direct Map Cache ---------------------------------------------------------------
 	    CacheTester DirectTester = new CacheTester(directCache, POS9Data); //Create tester
 	    DirectTester.calculateHitPercentage(); //Run first without recording
 	    double result = DirectTester.calculateHitPercentage(); //Record results
-        System.out.println("\n" + "DirectCache has a hit/total percentage of " + result);
-        System.out.println("DirectCache took a cycle penalty of " + DirectTester.calculateCyclePenalty());
         DirectTester.printHitsMisses();
+        System.out.println("DirectCache has a hit/total percentage of " + result);
+        System.out.println("DirectCache has a CPI of " + DirectTester.calculateAverageCPI());
+        System.out.println("DirectCache took a cycle penalty of " + DirectTester.calculateCyclePenalty());
+        DirectTester.printHitMissArray();
         System.out.println();
 
         //Fully Associative Cache ---------------------------------------------------------------
         CacheTester AssociativeTester = new CacheTester(associativeCache, POS9Data);
         AssociativeTester.calculateHitPercentage();
         result = AssociativeTester.calculateHitPercentage();
-        System.out.println("FullyAssociative has a hit/total percentage of " + result);
-        System.out.println("FullyAssociative took a cycle penalty of " + AssociativeTester.calculateCyclePenalty());
         AssociativeTester.printHitsMisses();
+        System.out.println("FullyAssociative has a hit/total percentage of " + result);
+        System.out.println("FullyAssociative has a CPI of " + AssociativeTester.calculateAverageCPI());
+        System.out.println("FullyAssociative took a cycle penalty of " + AssociativeTester.calculateCyclePenalty());
+        AssociativeTester.printHitMissArray();
         System.out.println();
 
         //Set Associative Cache ---------------------------------------------------------------
         CacheTester SetAssociativeTester = new CacheTester(setAssociativeCache, POS9Data);
         SetAssociativeTester.calculateHitPercentage();
         result = SetAssociativeTester.calculateHitPercentage();
-        System.out.println("SetAssociative has a hit/total percentage of " + result);
-        System.out.println("SetAssociative took a cycle penalty of " + SetAssociativeTester.calculateCyclePenalty());
         SetAssociativeTester.printHitsMisses();
+        System.out.println("SetAssociative has a hit/total percentage of " + result);
+        System.out.println("SetAssociative has a CPI of " + SetAssociativeTester.calculateAverageCPI());
+        System.out.println("SetAssociative took a cycle penalty of " + SetAssociativeTester.calculateCyclePenalty());
+        SetAssociativeTester.printHitMissArray();
         System.out.println();
 
         //Test all combinations of set ways ----------------------------------------------------------------------------------------

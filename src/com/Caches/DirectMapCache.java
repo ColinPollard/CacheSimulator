@@ -103,7 +103,7 @@ public class DirectMapCache extends Cache{
         }
 
         size = ((res * blockSize * 8) + ((physicalAddressSize-CalculateLog2(res * blockSize)) * (res)));
-        System.out.println("New direct mapping cache uses " + size + " bits of data.");
+        //System.out.println("New direct mapping cache uses " + size + " bits of data.");
         return res;
     }
 
