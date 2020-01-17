@@ -11,3 +11,4 @@ Supports three caches currently:
 The program is structured so that each cache type has its own class which extend the cache abstract class.
 This allows for a central tester to be used on any instance of a cache, and simplifies testing methods.
 Main has a sample set of data, and shows the performance of each type of cache on a set of data.
+![Cache Performance](https://github.com/ColinPollard/CacheSimulator/blob/master/Cache%20Performance.PNG)
